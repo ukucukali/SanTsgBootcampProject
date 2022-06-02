@@ -1,6 +1,6 @@
 using System;
 
-namespace SanTsgBootcampProject.Domain.Models
+namespace SanTsgBootcampProject.Web.Models
 {
     public class ErrorViewModel
     {

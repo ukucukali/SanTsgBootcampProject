@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SanTsgBootcampProject.Domain.Models;
+using SanTsgBootcampProject.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SanTsgBootcampProject.Domain.Controllers
+namespace SanTsgBootcampProject.Web.Controllers
 {
     public class HomeController : Controller
     {
