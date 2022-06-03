@@ -12,11 +12,11 @@ namespace SanTsgBootcampProject.Domain.Users
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        //[Email]
+        [EmailAddress]
         [Required]
         public string EmailAddress { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
 
     }
 }

@@ -1,0 +1,32 @@
+﻿@model User
+
+
+<form method="post" asp-action="Edit">
+
+    <h1>Edit User</h1>
+     <div asp-validation-summary="All"></div>
+    <div class="form-design">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <div class="form-design">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div class="form-design">
+        <label asp-for="EmailAddress"></label>
+        <input asp-for="EmailAddress" />
+        <span asp-validation-for="EmailAddress"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a class="btn btn-danger" asp-controller="User" asp-action="Index">Cancel</a>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

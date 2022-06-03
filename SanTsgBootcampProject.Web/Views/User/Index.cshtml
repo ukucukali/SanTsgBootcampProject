@@ -1,0 +1,37 @@
+﻿@model List<User>
+
+
+<h1>System Users</h1>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Creation Date</th>
+            <th>Status</th>
+            <th></th>
+            <th></th> 
+            <th></th> 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Password</td>
+                <td>@user.EmailAddress</td>
+                <td>@user.CreationDate</td>
+                <td>@(user.IsActive==true?"Active":"Passive")</td>
+                <td><a class="btn btn-warning  ml-3" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
+                <td><a class="btn btn-danger"  asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">Delete</a></td> 
+                <td><a class="btn btn-success"  asp-controller="User" asp-action="ChanceStatus" asp-route-id="@user.Id">Activate</a></td> 
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-info mt-4" asp-controller="User" asp-action="Create">Add User</a>
