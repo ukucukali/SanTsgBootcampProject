@@ -3,18 +3,18 @@
 
 <h1>System Users</h1>
 
-
-<table>
+<table class="table table-borderles">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Email</th>
-            <th>Creation Date</th>
-            <th>Status</th>
-            <th></th>
-            <th></th> 
-            <th></th> 
+            <th scope="col">Name</th>
+            <th scope="col">Password</th>
+            <th scope="col">Email</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
         </tr>
     </thead>
     <tbody>
@@ -25,13 +25,13 @@
                 <td>@user.Password</td>
                 <td>@user.EmailAddress</td>
                 <td>@user.CreationDate</td>
-                <td>@(user.IsActive==true?"Active":"Passive")</td>
-                <td><a class="btn btn-warning  ml-3" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
-                <td><a class="btn btn-danger"  asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">Delete</a></td> 
-                <td><a class="btn btn-success"  asp-controller="User" asp-action="ChanceStatus" asp-route-id="@user.Id">Activate</a></td> 
+                <td>@(user.Status==Status.Active?"Active": user.Status==Status.Deactive?"Passive":"Deleted")</td>
+                <td><a class="btn btn-warning" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">Delete</a></td>
+                <td><a class="btn btn-success" asp-controller="User" asp-action="ChanceStatus" asp-route-id="@user.Id">Chance Status</a></td>
+                <td><span class="alert-warning">@TempData["WarningMessage"]</span></td>
             </tr>
         }
     </tbody>
 </table>
-
 <a class="btn btn-info mt-4" asp-controller="User" asp-action="Create">Add User</a>

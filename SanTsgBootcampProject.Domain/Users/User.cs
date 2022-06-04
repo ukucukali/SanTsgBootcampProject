@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SanTsgBootcampProject.Domain.SharedConstants;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SanTsgBootcampProject.Domain.Users
@@ -16,7 +17,7 @@ namespace SanTsgBootcampProject.Domain.Users
         [Required]
         public string EmailAddress { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
-        public bool IsActive { get; set; } = true;
+        public Status Status { get; set; } = Status.Active;
 
     }
 }

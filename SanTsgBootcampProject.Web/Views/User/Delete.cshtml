@@ -1,0 +1,11 @@
+﻿@model User
+
+<h1>Confirm Delete</h1>
+
+<form asp-controller="User" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Are you sure that you want to delete the account "@Model.Username"? This cannot be undone.</p>
+
+    <button class="btn btn-primary">Yes,Delete</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>

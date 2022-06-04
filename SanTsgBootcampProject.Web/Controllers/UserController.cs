@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SanTsgBootcampProject.Data;
+using SanTsgBootcampProject.Domain.SharedConstants;
 using SanTsgBootcampProject.Domain.Users;
 using System.Linq;
 
@@ -69,7 +70,29 @@ namespace SanTsgBootcampProject.Web.Controllers
 
             if (user == null)
                 return NotFound();
-            user.IsActive = false;
+            if (user.Status == Status.Deleted)
+            {
+                TempData["WarningMessage"] = "It is already deleted";
+                return RedirectToAction("Index", "User");
+            }
+
+            user.Status = Status.Deleted;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int? id)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+
+            if (user == null)
+                return NotFound();
+
+            user.Status = Status.Deleted;
             _context.Users.Update(user);
             _context.SaveChanges();
 
@@ -83,10 +106,16 @@ namespace SanTsgBootcampProject.Web.Controllers
 
             if (user == null)
                 return NotFound();
-            user.IsActive = true;
+
+            if (user.Status == Status.Deleted)
+            {
+                TempData["WarningMessage"] = "Cannot chance Status because it is deleted";
+                return RedirectToAction("Index", "User");
+            }
+
+            user.Status = user.Status == Status.Active ? Status.Deactive : Status.Active;
             _context.Users.Update(user);
             _context.SaveChanges();
-
             return RedirectToAction("Index", "User");
         }
 
