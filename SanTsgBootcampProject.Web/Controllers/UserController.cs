@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SanTsgBootcampProject.Application.Interfaces;
 using SanTsgBootcampProject.Data.Repositories.Interfaces;
 using SanTsgBootcampProject.Domain.SharedConstants;
 using SanTsgBootcampProject.Domain.Users;
+using System.Threading.Tasks;
 
 namespace SanTsgBootcampProject.Web.Controllers
 {
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserService _userService;
 
-        public UserController(IUnitOfWork unitOfWork)
+        public UserController(IUnitOfWork unitOfWork, IUserService userService)
         {
             _unitOfWork = unitOfWork;
-
+            _userService = userService;
         }
         public IActionResult Index()
         {
@@ -27,12 +30,11 @@ namespace SanTsgBootcampProject.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public async Task<IActionResult> Create(User user)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Users.Add(user);
-                _unitOfWork.Save();
+                await _userService.CreateUser(user);
                 return RedirectToAction("Index");
             }
             return View(user);

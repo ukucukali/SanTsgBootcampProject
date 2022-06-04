@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.25">
       <PrivateAssets>all</PrivateAssets>
@@ -14,8 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SanTsgBootcampProject.Application\SanTsgBootcampProject.Application.csproj" />
     <ProjectReference Include="..\SanTsgBootcampProject.Data\SanTsgBootcampProject.Data.csproj" />
     <ProjectReference Include="..\SanTsgBootcampProject.Domain\SanTsgBootcampProject.Domain.csproj" />
+    <ProjectReference Include="..\SanTsgBootcampProject.Shared\SanTsgBootcampProject.Shared.csproj" />
   </ItemGroup>
 
 </Project>
