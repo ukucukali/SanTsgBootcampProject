@@ -2,7 +2,7 @@
 
 
 <h1>System Users</h1>
-
+<p class="alert-warning">@TempData["WarningMessage"]</p>
 <table class="table table-borderles">
     <thead>
         <tr>
@@ -12,9 +12,7 @@
             <th scope="col">Creation Date</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-
+            <th scope="col"></th>    
         </tr>
     </thead>
     <tbody>
@@ -29,7 +27,6 @@
                 <td><a class="btn btn-warning" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">Delete</a></td>
                 <td><a class="btn btn-success" asp-controller="User" asp-action="ChanceStatus" asp-route-id="@user.Id">Chance Status</a></td>
-                <td><span class="alert-warning">@TempData["WarningMessage"]</span></td>
             </tr>
         }
     </tbody>

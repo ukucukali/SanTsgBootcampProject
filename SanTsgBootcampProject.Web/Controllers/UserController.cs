@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SanTsgBootcampProject.Data;
+using SanTsgBootcampProject.Data.Repositories.Interfaces;
 using SanTsgBootcampProject.Domain.SharedConstants;
 using SanTsgBootcampProject.Domain.Users;
-using System.Linq;
 
 namespace SanTsgBootcampProject.Web.Controllers
 {
     public class UserController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserController(AppDbContext context)
+        public UserController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
+
         }
         public IActionResult Index()
         {
-            var users = _context.Users.ToList();
+            var users = _unitOfWork.Users.GetAll();
             return View(users);
         }
 
@@ -25,13 +25,14 @@ namespace SanTsgBootcampProject.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                _unitOfWork.Users.Add(user);
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -43,11 +44,13 @@ namespace SanTsgBootcampProject.Web.Controllers
             if (id.GetValueOrDefault() == 0)
                 return NotFound();
 
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = _unitOfWork.Users.Get(id);
 
-            if (user == null)
-                return NotFound();
-
+            if (user.Status == Status.Deleted)
+            {
+                TempData["WarningMessage"] = "You Cannot Edit Deleted Accounts";
+                return RedirectToAction("Index", "User");
+            }
             return View(user);
         }
 
@@ -56,8 +59,11 @@ namespace SanTsgBootcampProject.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Users.Update(user);
-                _context.SaveChanges();
+                User editedUser = _unitOfWork.Users.Get(user.Id);
+                editedUser.Username = user.Username;
+                editedUser.Password = user.Password;
+                editedUser.EmailAddress = user.EmailAddress;
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -66,19 +72,16 @@ namespace SanTsgBootcampProject.Web.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = _unitOfWork.Users.Get(id);
 
             if (user == null)
                 return NotFound();
+            //if status already deleted then just returs message and redirect to the main page
             if (user.Status == Status.Deleted)
             {
                 TempData["WarningMessage"] = "It is already deleted";
                 return RedirectToAction("Index", "User");
             }
-
-            user.Status = Status.Deleted;
-            _context.Users.Update(user);
-            _context.SaveChanges();
 
             return View(user);
         }
@@ -87,14 +90,14 @@ namespace SanTsgBootcampProject.Web.Controllers
         [ActionName("Delete")]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = _unitOfWork.Users.Get(id);
 
             if (user == null)
                 return NotFound();
 
-            user.Status = Status.Deleted;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            User editedUser = _unitOfWork.Users.Get(user.Id);
+            editedUser.Status = Status.Deleted;
+            _unitOfWork.Save();
 
             return RedirectToAction("Index", "User");
         }
@@ -102,7 +105,7 @@ namespace SanTsgBootcampProject.Web.Controllers
         [HttpGet]
         public IActionResult ChanceStatus(int? id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = _unitOfWork.Users.Get(id);
 
             if (user == null)
                 return NotFound();
@@ -113,9 +116,9 @@ namespace SanTsgBootcampProject.Web.Controllers
                 return RedirectToAction("Index", "User");
             }
 
-            user.Status = user.Status == Status.Active ? Status.Deactive : Status.Active;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            User editedUser = _unitOfWork.Users.Get(user.Id);
+            editedUser.Status = _unitOfWork.Users.ChanceCurrentStatus(user);
+            _unitOfWork.Save();
             return RedirectToAction("Index", "User");
         }
 

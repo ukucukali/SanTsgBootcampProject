@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SanTsgBootcampProject.Data;
+using SanTsgBootcampProject.Data.Repositories.Interfaces;
 
 namespace SanTsgBootcampProject.Web
 {
@@ -23,6 +24,7 @@ namespace SanTsgBootcampProject.Web
 
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(ob => ob.UseSqlServer(Configuration.GetConnectionString("ConStr")));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         }
 
