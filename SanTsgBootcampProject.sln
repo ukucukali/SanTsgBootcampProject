@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanTsgBootcampProject.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanTsgBootcampProject.Data", "SanTsgBootcampProject.Data\SanTsgBootcampProject.Data.csproj", "{3B9E5400-91CB-4F4F-9BC5-2AAF01CFA408}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanTsgBootcampProject.Api", "SanTsgBootcampProject.Api\SanTsgBootcampProject.Api.csproj", "{5CD88281-EA32-476B-AF85-81504A00092B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanTsgBootcampProject.Application", "SanTsgBootcampProject.Application\SanTsgBootcampProject.Application.csproj", "{743CFE8E-931A-4F4D-8C01-13DF1EA362BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanTsgBootcampProject.Shared", "SanTsgBootcampProject.Shared\SanTsgBootcampProject.Shared.csproj", "{9EC27E69-2A1C-4A92-A862-E98C591E8D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanTsgBootcampProject.Shared", "SanTsgBootcampProject.Shared\SanTsgBootcampProject.Shared.csproj", "{9EC27E69-2A1C-4A92-A862-E98C591E8D88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{3B9E5400-91CB-4F4F-9BC5-2AAF01CFA408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B9E5400-91CB-4F4F-9BC5-2AAF01CFA408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B9E5400-91CB-4F4F-9BC5-2AAF01CFA408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CD88281-EA32-476B-AF85-81504A00092B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CD88281-EA32-476B-AF85-81504A00092B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CD88281-EA32-476B-AF85-81504A00092B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CD88281-EA32-476B-AF85-81504A00092B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{743CFE8E-931A-4F4D-8C01-13DF1EA362BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{743CFE8E-931A-4F4D-8C01-13DF1EA362BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{743CFE8E-931A-4F4D-8C01-13DF1EA362BE}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -118,7 +118,7 @@ namespace SanTsgBootcampProject.Web.Controllers
         [HttpGet]
         public IActionResult ChanceStatus(int? id)
         {
-            var user = _unitOfWork.Users.Get(id);
+            User user = _unitOfWork.Users.Get(id);
 
             if (user == null)
                 return NotFound();
@@ -130,8 +130,7 @@ namespace SanTsgBootcampProject.Web.Controllers
                 return RedirectToAction("Index", "User");
             }
 
-            User editedUser = _unitOfWork.Users.Get(user.Id);
-            editedUser.Status = _unitOfWork.Users.ChanceCurrentStatus(user);
+            user.Status = _unitOfWork.Users.ChanceCurrentStatus(user);
             _unitOfWork.Save();
             _logger.LogInformation("user with id {0} status change", user.Id);
             return RedirectToAction("Index", "User");

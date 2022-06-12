@@ -1,0 +1,23 @@
+﻿@model UserSanLoginModel
+
+<form class="" method="post">
+    <div class="form-group">
+        <label class="form-label" asp-for="Agency"></label>
+        <input class="form-control w-25" asp-for="Agency" />
+        <span asp-validation-for="Agency"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="User"></label>
+        <input class="form-control w-25" asp-for="User" />
+        <span asp-validation-for="User"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="Password"></label>
+        <input class="form-control w-25" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+

@@ -9,6 +9,7 @@ using SanTsgBootcampProject.Application.Services;
 using SanTsgBootcampProject.Data;
 using SanTsgBootcampProject.Data.Repositories.Interfaces;
 using SanTsgBootcampProject.Shared.SettingsModel;
+using System;
 
 namespace SanTsgBootcampProject.Web
 {
@@ -26,7 +27,9 @@ namespace SanTsgBootcampProject.Web
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //Sessions added for easy token transfer.
+            services.AddSession(op => op.IdleTimeout = TimeSpan.FromMinutes(10));
             services.AddDbContext<AppDbContext>(ob => ob.UseSqlServer(Configuration.GetConnectionString("ConStr")));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -49,7 +52,7 @@ namespace SanTsgBootcampProject.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -58,7 +61,7 @@ namespace SanTsgBootcampProject.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
         }
     }
