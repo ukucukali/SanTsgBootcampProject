@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SanTsgBootcampProject.Domain;
-using SanTsgBootcampProject.Domain.ApiSearchResultModels;
+using SanTsgBootcampProject.Domain.ApiResponseModels;
 using SanTsgBootcampProject.Domain.Users;
 using SanTsgBootcampProject.Web.Models;
 using System.Diagnostics;
@@ -27,6 +27,11 @@ namespace SanTsgBootcampProject.Web.Controllers
             //returns Agency Login View
             return View();
         }
+        /// <summary>
+        /// This controller logs you in if valid login information given 
+        /// </summary>
+        /// <param name="userSan"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Login(UserSanLoginModel userSan)
         {
@@ -45,11 +50,12 @@ namespace SanTsgBootcampProject.Web.Controllers
                 {
                     //reads response as token result model
                     TokenResultModel loginDetails = await response.Content.ReadAsAsync<TokenResultModel>();
-                    //we need only token from the response
+                    //we need only token information from the response
                     string token = loginDetails.Body.Token;
                     //createed a session to carry token for later use
                     HttpContext.Session.SetString("JWToken", token);
-                    return RedirectToAction("SelectDestination", "Hotel");
+                    //Redirects you to the destination search controller
+                    return RedirectToAction("SearchQuery", "Hotel");
                 }
             }
             return View(userSan);

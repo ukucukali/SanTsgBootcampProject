@@ -1,6 +1,5 @@
 ﻿
-
-namespace SanTsgBootcampProject.Domain.ApiSearchResultModels
+namespace SanTsgBootcampProject.Domain.ApiResponseModels
 {
     /// <summary>
     /// This class mapping created to get tokens from API
