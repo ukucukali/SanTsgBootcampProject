@@ -1,0 +1,88 @@
+﻿@model PriceSearchViewModel
+
+
+<div class="container">
+    <div class="py-4">
+     
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <h4 class="mb-3">Reservation Details</h4>
+            
+            <form method="post">
+                <div class="row">
+
+                    <div class="col-md-6 mb-2">
+                        <label>Checkin Date:</label>
+                        <input type="date" class="form-control" asp-for="CheckIn">
+                        <span asp-validation-for="CheckIn"></span>
+                    </div>
+
+                    <div class="col-md-3 mb-3 ">
+                        <label >Day</label>
+                        <input type="number" class="form-control" value="1" asp-for="Night">
+                        <span asp-validation-for="Night"></span>
+                    </div>
+                      <div class="col-md-3 mb-3">
+                        <label>Currency</label>
+                          <select class="custom-select d-block w-100" asp-for="Currency">
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                            <option value="TRY">TRY</option>
+                        </select>
+                    </div>
+                </div>
+
+                 <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <label>Adult</label>
+                        <input type="number" class="form-control" asp-for="Adult">
+                        <span asp-validation-for="Adult"></span>
+                    </div>
+
+                    <div class="col-md-3 mb-3 ">
+                        <label >Child</label>
+                        <input type="number" class="form-control" asp-for="TotalChild">
+                    </div>
+                      <div class="col-md-4 mb-3">
+                        <label>Nationality</label>
+                       <select class="custom-select d-block w-100" asp-for="Nationality" >
+                            <option value="TR">TR</option>
+                            <option value="RU">RU</option>
+                            <option value="DE">DE</option>            
+                        </select>
+                    </div>
+
+                </div>
+
+                  <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <label>Child 1</label>
+                        <input type="number" class="form-control"asp-for="Child1">
+                        <span asp-validation-for="Child1"></span>
+                    </div>
+
+                    <div class="col-md-3 mb-3 ">
+                        <label >Child 2</label>
+                        <input type="number" class="form-control" asp-for="Child2">
+                        <span asp-validation-for="Child1"></span>
+                    </div>
+                   <div class="col-md-3 mb-3 ">
+                        <label >Child 3</label>
+                        <input type="number" class="form-control" asp-for="Child3">
+                        <span asp-validation-for="Child1"></span>
+                    </div>
+                    <div class="col-md-3 mb-3 ">
+                        <label >Child 4</label>
+                        <input type="number" class="form-control" asp-for="Child4">
+                        <span asp-validation-for="Child1"></span>
+                    </div>
+
+                </div>
+                <button class="btn btn-primary btn-md btn-block mt-3" type="submit">Find Hotel</button>
+            </form>
+        </div>
+    </div>
+</div>
+

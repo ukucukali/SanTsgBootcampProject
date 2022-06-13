@@ -1,0 +1,68 @@
+﻿@model PriceSearchResult
+
+@{
+    var modelHeader = @Model.Body.Hotels;
+}
+
+<h1>Pick Your hotel</h1>
+@{
+    if (Model != null)
+    {
+        <div class="container-fluid">
+            @foreach (var hotel in modelHeader)
+            {
+                <div class="row mt-4">
+                    <div class="col-md-3 mb-2">
+                        <img class="ml-2 " src="@hotel.ThumbnailFull" width="150" height="150">
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="row ">
+                            <form method="post">
+                            <input type="submit" value="@hotel.Name" asp-route-id="@hotel.Id"/>  
+                            <h5> <a class="text-decoration-none button" type="submit"  asp-route-id="@hotel.Id">@hotel.Name</a></h5>
+                            </form>
+                        </div>
+                        <div class="row mb-2">
+                            <p>@hotel.City.Name</p>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-6 ">
+                                @if (hotel.Stars > 0 && !hotel.Rating.Equals(null))
+                                {
+                                    int num = (int)Math.Floor(hotel.Stars);
+                                    float[] starArray = new float[] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f };
+
+                                    @for (int i = 0; i < @num; i++)
+                                    {
+                                        <i class="fas fa-star"></i>
+                                    }
+                                    @if (starArray.Contains(hotel.Stars))
+                                    {
+                                        <i class="fas fa-star-half-alt"></i>
+
+                                    }
+                                    <p>Rating:@hotel.Rating</p>
+                                }
+                            </div>
+                            <div class="col-md-6 ">
+                                @foreach (var info in hotel.Offers)
+                                {
+                                    @info.Price.Amount
+
+                                    @info.Price.Currency
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                  
+                </div>
+            }
+        </div>
+    }
+}
+
+
+ 

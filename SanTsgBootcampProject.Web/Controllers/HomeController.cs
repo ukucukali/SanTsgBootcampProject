@@ -49,7 +49,7 @@ namespace SanTsgBootcampProject.Web.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     //reads response as token result model
-                    TokenResultModel loginDetails = await response.Content.ReadAsAsync<TokenResultModel>();
+                    TokenResult loginDetails = await response.Content.ReadAsAsync<TokenResult>();
                     //we need only token information from the response
                     string token = loginDetails.Body.Token;
                     //createed a session to carry token for later use

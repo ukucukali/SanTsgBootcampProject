@@ -4,7 +4,7 @@ namespace SanTsgBootcampProject.Domain.ApiResponseModels
     /// <summary>
     /// This class mapping created to get tokens from API
     /// </summary>
-    public class TokenResultModel : BaseEntity<TokenModel>
+    public class TokenResult : BaseEntity<TokenModel>
     {
 
     }

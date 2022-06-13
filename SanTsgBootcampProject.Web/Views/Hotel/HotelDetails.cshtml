@@ -1,0 +1,129 @@
+﻿@model ProductDetailsResult
+@{
+    var modelHeader = @Model.Body.Hotel;
+}
+
+<div class="py-4">
+    <h1>@modelHeader.Name.ToString()</h1>
+</div>
+
+@if (modelHeader.Seasons != null && modelHeader.Seasons[0].MediaFiles.Count > 0 && modelHeader.Seasons[0].MediaFiles[0].UrlFull != null)
+{
+    <div class="container-fluid">
+      
+        <div>
+
+            @foreach (var photos in modelHeader.Seasons.Select(x => x.MediaFiles))
+            {
+                @foreach (var photo in photos)
+                {
+                    <a href="@photo.UrlFull"><img class=" mb-4" src="@photo.UrlFull" width="90" height="90"></a>
+                }
+            }
+        </div>
+    </div>
+}
+
+<div class="container">
+
+    @if (!modelHeader.Description.Text.Equals(null) && !modelHeader.Description.Equals(null))
+    {
+        <div class="row mb-4 mt-3">
+            <div class="col-md-3 mb-2">
+                <h4>Hotel Description</h4>
+            </div>
+            <div class="col-md-9 mb-3 ">
+                <p>@modelHeader.Description.Text</p>
+            </div>
+        </div>
+    }
+
+    @if (modelHeader.Stars > 0 && !modelHeader.Rating.Equals(null))
+    {
+        <div class="row">
+            <div class="col-md-3 mb-2">
+                <h4>Stars:</h4>
+                <h4>Rating:</h4>
+            </div>
+
+            <div class="col-md-9 mb-3 ">
+
+                @{
+                    int num = (int)Math.Floor(modelHeader.Stars);
+                    float[] starArray = new float[] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f };
+                }
+                @for (int i = 0; i < @num; i++)
+                {
+                    <i class="fas fa-star"></i>
+                }
+                @if (starArray.Contains(modelHeader.Stars))
+                {
+                    <i class="fas fa-star-half-alt"></i>
+
+                }
+
+                <p> @modelHeader.Rating</p>
+            </div>
+        </div>
+    }
+
+    @if (modelHeader.Seasons != null && modelHeader.Seasons[0].TextCategories.Count > 0 && modelHeader.Seasons[0].TextCategories[0].Name != null)
+    {
+        @foreach (var texts in modelHeader.Seasons[0].TextCategories)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="mb-3">@texts.Name</h4>
+                </div>
+                @foreach (var presentation in texts.Presentations)
+                {
+                    <div class="col-md-9 mb-3">
+                        <p>@presentation.Text.ToString()</p>
+                    </div>
+                }
+            </div>
+        }
+    }
+
+    @if (modelHeader.Address.AddressLines.Count > 0 && modelHeader.Address.AddressLines[0] != null && modelHeader.Address.Street != null)
+    {
+        <div class="row mb-4 mt-3">
+            <div class="col-md-3 mb-3">
+                <h4>Address</h4>
+            </div>
+            <div class="col-md-8 mb-2">
+                @foreach (var adressLine in modelHeader.Address.AddressLines)
+                {
+                    <p>@adressLine</p>
+                }
+            </div>
+        </div>
+    }
+
+    @if (modelHeader.PhoneNumber != null || modelHeader.FaxNumber != null)
+    {
+        <div class="row mb-2">
+            <div class="col-md-3 mb-2">
+                <h4>Contact Info</h4>
+            </div>
+            <div class="col-md-9 mb-3 ">
+                <p><b>Phone Number: </b>@modelHeader.PhoneNumber</p>
+                <p><b>Fax Number: </b>@modelHeader.FaxNumber</p>
+                <p><b>Home Page: </b><a href="@modelHeader.HomePage">@modelHeader.HomePage</a></p>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+    </div>
+   <div class="col-md-4 mb-3">
+        <form method="post">
+            <button class="btn btn-primary btn-md btn-block mt-3" type="submit">Book @modelHeader.Name</button>
+        </form>
+    </div>
+    <div class="col-md-4 mb-3"> 
+    </div>
+</div>
+

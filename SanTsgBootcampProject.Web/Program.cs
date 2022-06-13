@@ -10,6 +10,7 @@ namespace SanTsgBootcampProject.Web
     {
         public static void Main(string[] args)
         {
+            //setup for logging
             Log.Logger = new LoggerConfiguration()
               .WriteTo.Console()
               .WriteTo.File(new JsonFormatter(), "logs-{Date}.json", rollingInterval: RollingInterval.Day)
