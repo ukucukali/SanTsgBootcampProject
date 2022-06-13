@@ -87,7 +87,7 @@ namespace SanTsgBootcampProject.Web.Controllers
                 string arrivalLocationId = HttpContext.Session.GetString("CityId");
                 string checkinDate = priceSearch.GetCheckinDate();
 
-                PriceSearch query = new PriceSearch
+                PriceSearchQuery query = new PriceSearchQuery
                 {
                     ArrivalLocations = new List<ArrivalLocation>
                     {

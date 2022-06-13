@@ -6,7 +6,7 @@ namespace SanTsgBootcampProject.Domain.ApiCallModels
     /// <summary>
     /// when need to get prices from API. this model is used to call API correctly
     /// </summary>
-    public class PriceSearch
+    public class PriceSearchQuery
     {
         public bool CheckAllotment { get; set; } = true;
         public bool CheckStopSale { get; set; } = true;

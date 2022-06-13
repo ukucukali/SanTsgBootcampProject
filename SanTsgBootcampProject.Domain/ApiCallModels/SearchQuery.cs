@@ -6,7 +6,7 @@ namespace SanTsgBootcampProject.Domain.ApiCallModels
     /// <summary>
     /// This class created to get correct query information from the query search
     /// </summary>
-    public class QuerySearch
+    public class SearchQuery
     {
         public string ProductType { get; set; } = "2";
         [Required, MinLength(4)]

@@ -7,11 +7,13 @@ namespace SanTsgBootcampProject.Data
     {
         private readonly AppDbContext _context;
         public IUserRepository Users { get; private set; }
+        public IReservatioConfirmationDetailsRepository ReservatioConfirmationDetails { get; private set; }
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
             Users = new UserRepository(context);
+            ReservatioConfirmationDetails = new ReservatioConfirmationDetailsRepository(context);
         }
         public void Save()
         {

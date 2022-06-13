@@ -5,7 +5,7 @@ namespace SanTsgBootcampProject.Web.Models
 {
     public class QuerySearcResultViewModel
     {
-        public QuerySearch HotelSearchQuery { get; set; }
+        public SearchQuery HotelSearchQuery { get; set; }
         public QueryResult HotelResults { get; set; }
 
     }

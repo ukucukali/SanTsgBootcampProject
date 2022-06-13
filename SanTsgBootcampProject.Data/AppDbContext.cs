@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SanTsgBootcampProject.Domain;
 using SanTsgBootcampProject.Domain.Users;
 
 namespace SanTsgBootcampProject.Data
@@ -10,5 +11,6 @@ namespace SanTsgBootcampProject.Data
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<ConfirmationResult> ReservatioConfirmationDetails { get; set; }
     }
 }

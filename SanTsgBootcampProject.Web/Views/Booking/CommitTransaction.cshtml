@@ -1,0 +1,47 @@
+﻿@model CommitReservationResult
+
+@if (Model.Body != null)
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-2 mb-3">
+            </div>
+            <div class="col-md-8 mb-3">
+                Reservation Number: @Model.Body.ReservationNumber
+            </div>
+            <div class="col-md-2 mb-3">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 mb-3">
+            </div>
+            <div class="col-md-8 mb-3">
+                Encrypted Reservation Number:  @Model.Body.EncryptedReservationNumber
+            </div>
+            <div class="col-md-2 mb-3">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 mb-3">
+            </div>
+            <div class="col-md-8 mb-3">
+                TransactionId: @Model.Body.TransactionId
+            </div>
+            <div class="col-md-2 mb-3">
+            </div>
+        </div>
+    </div>
+}
+<form method="post">
+    <div class="row mt-5">
+        <div class="col-md-3  mt-auto">
+        </div>
+        <div class="col-md-3  mt-auto">
+            <button class="btn btn-success btn-md btn-block mt-3" type="submit">Return To Main Page</button>
+        </div>
+        <div class="col-md-6  mt-auto">
+        </div>
+    </div>
+</form>

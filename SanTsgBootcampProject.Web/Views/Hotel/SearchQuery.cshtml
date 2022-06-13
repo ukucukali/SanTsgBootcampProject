@@ -1,41 +1,45 @@
 ﻿@model QuerySearcResultViewModel
 
-<h1>Search your dream Hotel</h1>
+<h1 class="mb-3">Search your dream Hotel</h1>
 
-<h3>Select Destination</h3>
 
-<form method="get">
-    <div class="form-group">
-        <label class="form-label" asp-for="HotelSearchQuery. Query"></label>
-        <input class="form-control w-25" asp-for="HotelSearchQuery.Query" />
-        <span asp-validation-for="HotelSearchQuery.Query"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container">
+    <form method="get">
+        <div class="col-10">
+            <div class="form-group">
+                <label class="form-label">Search Destination</label>
+                <input class="form-control w-25" asp-for="HotelSearchQuery.Query" />
+                <span asp-validation-for="HotelSearchQuery.Query"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
 
-<div id="City">
+    </form>
+</div>
+<div class=" container-fluid">
     @{
         if (Model != null && Model.HotelResults.Body.Items != null)
         {
-             var citySearch = Model.HotelResults.Body.Items.Select(x => x.City).Select(y => new { y.Id, y.Name }).Where(x => !x.Name.Contains("Riviera") || x.Id == 10834).Distinct();
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>City</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in citySearch)
-                    {
+            var citySearch = Model.HotelResults.Body.Items.Select(x => x.City).Select(y => new { y.Id, y.Name }).Where(x => !x.Name.Contains("Riviera") || x.Id == 10834).Distinct();
+            <div class="col-1">
+                <table class="table  mt-5">
+                    <thead>
                         <tr>
-                            <form  method="post">
-                            <th scope="row"><button type="submit" class="btn btn-primary" asp-route-id="@item.Id">@item.Name</button></th>
-                            </form>
+                            <th>Cities</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in citySearch)
+                        {
+                            <tr>
+                                <form method="post">
+                                <th scope="row"><button type="submit" class="btn btn-primary" asp-route-id="@item.Id">@item.Name</button></th>
+                                </form>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
     }
 </div>

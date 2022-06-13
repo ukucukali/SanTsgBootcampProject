@@ -1,0 +1,71 @@
+﻿@model List<SetReservationForm>
+
+
+@if (!@TempData["TravellerCount"].Equals(null))
+{
+    <p>@TempData["TransactionBeggins"]</p>
+    <br>
+    <form method="post">
+        <div class="container mt-5">
+
+            <div class="row">
+                @for (int i = 0; i < (int)@TempData["TravellerCount"]; i++)
+                {
+                    <div class="col mb-2">
+                        <h4>Traveller @(i+1)</h4>
+
+
+                        <div class="mb-2">
+                            <label class="form-label" asp-for="@Model[i].Name"></label>
+                            <input class="form-control w-50" asp-for="@Model[i].Name" />
+                            <span asp-validation-for="@Model[i].Name"></span>
+                        </div>
+
+                        <div class="mb-2">
+
+                            <label class="form-label" asp-for="@Model[i].Surname"></label>
+                            <input class="form-control w-50" asp-for="@Model[i].Surname" />
+                            <span asp-validation-for="@Model[i].Surname"></span>
+
+                        </div>
+                        <div class="mb-2">
+
+                            <label class="form-label" asp-for="@Model[i].IdentityNumber"></label>
+                            <input class="form-control w-50" asp-for="@Model[i].IdentityNumber" />
+                            <span asp-validation-for="@Model[i].IdentityNumber"></span>
+                        </div>
+
+                        <div class="mb-2">
+
+                            <label class="form-label" asp-for="@Model[i].Phone"></label>
+                            <input class="form-control w-50" asp-for="@Model[i].Phone" />
+                            <span asp-validation-for="@Model[i].Phone"></span>
+
+                        </div>
+
+                        <div class="mb-2">
+
+                            <label class="form-label" asp-for="@Model[i].Email"></label>
+                            <input class="form-control w-50" asp-for="@Model[i].Email" />
+                            <span asp-validation-for="@Model[i].Email"></span>
+
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-3  mt-auto">
+            </div>
+            <div class="col-md-3  mt-auto">
+                <button class="btn btn-success btn-md btn-block mt-3" type="submit">Save</button>
+            </div>
+            <div class="col-md-6  mt-auto">
+            </div>
+        </div>
+
+    </form>
+}
+
